@@ -36,7 +36,7 @@ int Graph::Add_Node(Area *before, int code, int symbol, int color, pair<int, int
 	if ((directed.first < 0 || directed.first > cX) || (directed.second < 0 || directed.second > cY)) {
 		return 0;
 	}
-	
+
 	Area* ptr = Connect_Nodes(yx, coordinate);
 
 	if (ptr != nullptr) {
@@ -44,7 +44,7 @@ int Graph::Add_Node(Area *before, int code, int symbol, int color, pair<int, int
 		switch (coordinate) {
 		case 0:
 			before->north = ptr;
-			ptr->south = before; 
+			ptr->south = before;
 			return 2;
 			break;
 		case 1:
@@ -54,12 +54,12 @@ int Graph::Add_Node(Area *before, int code, int symbol, int color, pair<int, int
 			break;
 		case 2:
 			before->south = ptr;
-			ptr->north = before; 
+			ptr->north = before;
 			return 2;
 			break;
 		case 3:
-			before->west = ptr; 
-			ptr->east = before; 
+			before->west = ptr;
+			ptr->east = before;
 			return 2;
 			break;
 		}
@@ -87,16 +87,16 @@ int Graph::Add_Node(Area *before, int code, int symbol, int color, pair<int, int
 
 				init->south = before;
 				before->north = init; cout << "\nbefore->north node++\n";
-				
+
 				out = init->yx;
 				Node_Count++;
 				return 1;
 			}
 			else
-				before = before->north;
+				return 3;
 			break;
 		case 1:
-			if (before->east == NULL)
+			if (before->east == nullptr)
 			{
 				init = new Area;
 				Current_Code++;
@@ -117,10 +117,10 @@ int Graph::Add_Node(Area *before, int code, int symbol, int color, pair<int, int
 				return 1;
 			} 
 			else
-				//before = before->east;
-			//break;
+				return 3;
+			break;
 		case 2:
-			if (before->south == NULL)
+			if (before->south == nullptr)
 			{
 				init = new Area;
 				Current_Code++;
@@ -141,10 +141,10 @@ int Graph::Add_Node(Area *before, int code, int symbol, int color, pair<int, int
 				return 1;
 			}
 			else
-				//before = before->south;
-			//break;
+				return 3;
+			break;
 		case 3:
-			if (before->west == NULL)
+			if (before->west == nullptr)
 			{
 				init = new Area;
 				Current_Code++;
@@ -159,14 +159,13 @@ int Graph::Add_Node(Area *before, int code, int symbol, int color, pair<int, int
 				Exists[init->yx] = init;
 				init->east = before;
 				before->west = init; cout << "\nbefore->west node++\n";
-				
 				out = init->yx;
 				Node_Count++;
 				return 1;
 			}
 			else
-				//before = before->west;
-			//break;
+				return 3;
+			break;
 		default:
 			cout << "All node paths are occupied." << endl;
 			return 0;
@@ -188,7 +187,7 @@ void Graph::Get_Nodes() {
 
 
 
-Graph::Area* Graph::Connect_Nodes(pair<int,int> yx, int coordinate) {
+Graph::Area* Graph::Connect_Nodes(pair<int, int> yx, int coordinate) {
 	pair<int, int> coordinates;
 	switch (coordinate) {
 	case 1:
@@ -209,7 +208,7 @@ Graph::Area* Graph::Connect_Nodes(pair<int,int> yx, int coordinate) {
 		break;
 	}
 	//map<pair<int, int>, Area*>::iterator it;
-	
+
 	if (Exists.find(coordinates) == Exists.end())
 		return nullptr;
 	else {
@@ -484,7 +483,7 @@ void Map::Reveal(int player_y, int player_x) {
 			Format.WorldPaint(6, "+");
 			break; //Cross
 		case 11:
-			Format.WorldPaint(13, "=");
+			Format.WorldPaint(12, "+");
 			break;
 		case 12:
 			Format.WorldPaint(9, "~");

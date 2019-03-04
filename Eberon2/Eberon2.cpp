@@ -130,28 +130,25 @@ void Generate_Fixed(int n, int limit) {
 				}
 				int type = graph.Add_Node(graph.temp, graph.Current_Code, 9, 12, undirected, "Within the labyrinth", "cell", randomcell, directed);
 				if (type == 1) {
-					if (world.get_Map_Tile(directed.first, directed.second) == 0) {
-						world.Change(directed.first, directed.second, 9);
-					}
+					world.Change(directed.first, directed.second, 9);
 					cout << " Created exit! " << endl;
 				}
 				else if (type == 2) {
-					if (world.get_Map_Tile(directed.first, directed.second) == 0) {
-						world.Change(directed.first, directed.second, 10);
-					}
+					world.Change(directed.first, directed.second, 11);
+					cout << " Created exit! " << endl;
 				}
 
 			}
 			else {
 				int type = graph.Add_Node(graph.temp, graph.Current_Code, 1, 3, undirected, "Within the labyrinth", "cell", randomcell, directed);
 				if (type == 1) {
-					if (world.get_Map_Tile(directed.first, directed.second) == 0) {
+					if (world.get_Map_Tile(directed.first, directed.second) != 8 || world.get_Map_Tile(directed.first, directed.second) != 9) {
 						world.Change(directed.first, directed.second, 1);
 						cout << " Created node!" << endl;
 					}
 				}
 				else if (type == 2) {
-					if (world.get_Map_Tile(directed.first, directed.second) == 0) {
+					if (world.get_Map_Tile(directed.first, directed.second) != 8 || world.get_Map_Tile(directed.first, directed.second) != 9) {
 						world.Change(directed.first, directed.second, 10);
 					}
 				}
@@ -471,6 +468,7 @@ void WorldView() {
 	cout << "\nYour world is being generated... \n";
 	//Generate_Random(20, node_number);
 	Generate_Fixed(20, node_number);
+	world.Change(20, 15, 8);
 	//Generate_Random(20, node_number);
 	//graph.Add_Node(graph.Get_Start(), graph.Current_Code, 1, 3, , "Within the labyrinth", "cell", randomcell, directed)
 	world.Reveal((player.get_Position()[0]), (player.get_Position()[1]));

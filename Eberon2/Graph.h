@@ -8,7 +8,7 @@
 #include <algorithm>
 #include <list>
 #include <random>
-
+//enum Directions { NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3 };
 
 using namespace std;
 
@@ -26,7 +26,7 @@ private:
 		Area *south = NULL;
 		Area *west = NULL;
 		Area *previous = NULL;
-		
+		//Area *Adjacents[4]{ nullptr, nullptr, nullptr, nullptr };
 	};
 
 	Area *Start;
@@ -40,7 +40,9 @@ public:
 	Graph();
 	int Node_Count;
 	int Current_Code = 0;
-	map<pair<int, int>, Area*> Adjacents;
+	vector<vector<Area*>> Adj;
+	vector<Area*> Adjacent;
+	//map<pair<int, int>, Area*> Adjacents;
 	map<pair<int, int>, Area*> Exists;
 	Area *temp; Area *init; Area *pointer;
 	Area* Get_Start();
