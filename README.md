@@ -9,3 +9,6 @@ The target feature to be implemented is procedural dungeon generation.
 
 
 Everything is still under construction! Nothing playable atm.
+
+
+[![Preview](https://github.com/Aroueterra/Eberon/blob/master/Navigating2.gif)]()
